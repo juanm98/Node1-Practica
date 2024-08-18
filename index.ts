@@ -5,7 +5,7 @@ const port = 3000;
 
 app.use(express.json());
 
-interface Contact {
+type Contact = {
     id: number;
     fullName: string;
     phoneNumber: string;
@@ -29,6 +29,8 @@ app.get('/api/contacts/:id', (req: Request, res: Response) => {
     if(isNaN(id)) {
         return res.status(400).json({error: "El id debe ser un numero"});
     };
+
+    // Aqui se usa el arrow function con el metodo find para buscar en el array y comparar que el id que se recibe es igual a del parametro
     const contact = contacts.find((contact) => contact.id === id);
 
     if(!contact) {
