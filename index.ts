@@ -25,6 +25,11 @@ app.get(`/api/contacts`, (req: Request, res: Response) => {
 // Obtener contacto especifico
 app.get('/api/contacts/:id', (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
+
+    if(isNaN(id)) {
+        return res.status(400).json({error: "El id debe ser un numero"});
+    };
+    const contact = contacts.find((contact) => contact.id === id);
 });
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
