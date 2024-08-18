@@ -30,6 +30,11 @@ app.get('/api/contacts/:id', (req: Request, res: Response) => {
         return res.status(400).json({error: "El id debe ser un numero"});
     };
     const contact = contacts.find((contact) => contact.id === id);
+
+    if(!contact) {
+        return res.status(404).json({error: "No se encontro el contacto"})
+    };
+    res.json(contact);
 });
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
