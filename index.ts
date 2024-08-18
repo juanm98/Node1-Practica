@@ -12,5 +12,9 @@ type Contact {
     email: string
 };
 
+let contacts: Contact [] = [
+    {id: 1, fullName: "Juan Manuel", phoneNumber: "809-555-5555", email: "juanmanuel@hotmail.com"},
+    {id: 2, fullName: "Maria Jose", phoneNumber: "809-646-5345", email: "mariajose@hotmail.com"}
+];
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
