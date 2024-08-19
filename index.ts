@@ -19,7 +19,7 @@ let contacts: Contact [] = [
 
 // Obtiene los datos de contactos
 app.get(`/api/contacts`, (req: Request, res: Response) => {
-    res.json(contacts)
+    res.json(contacts);
 });
 
 // Obtener contacto especifico
@@ -27,14 +27,14 @@ app.get('/api/contacts/:id', (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
     if(isNaN(id)) {
-        return res.status(400).json({error: "El id debe ser un numero"})
+        return res.status(400).json({error: "El id debe ser un numero"});
     };
 
     // Aqui se usa el arrow function con el metodo find para buscar en el array y comparar que el id que se recibe es igual a del parametro
     const contact = contacts.find((contact) => contact.id === id);
 
     if(!contact) {
-        return res.status(404).json({error: "No se encontro el contacto"})
+        return res.status(404).json({error: "No se encontro el contacto"});
     };
     res.json(contact);
 });
@@ -44,12 +44,12 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     const { fullName, phoneNumber, email } = req.body;
 
     if(!fullName || !phoneNumber || !email) {
-        return res.status(400).json({error: "Todos los campos son obligatorios"})
+        return res.status(400).json({error: "Todos los campos son obligatorios"});
     };
 
     // El medoto some devuelve truthy si encuenta algo parecido en el array, en este caso el de los emails
     if(contacts.some(contact => contact.email === email)) {
-        return res.status(400).json({error: "El email ya existe"})
+        return res.status(400).json({error: "El email ya existe"});
     };
     const newContact: Contact ={
         id: contacts.length + 1,
@@ -62,28 +62,28 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     });
 
     // Actualizar contacto
-    app.put('/api/contacts/:id'), (req: Request, res: Response) => {
+    app.put('/api/contacts/:id', (req: Request, res: Response) => {
         const id = parseInt(req.params.id);
         const { fullName, phoneNumber, email } = req.body;
 
         if(isNaN(id)) {
-            return res.status(400).json({error: "El id debe ser un numero"})
+            return res.status(400).json({error: "El id debe ser un numero"});
         };
 
         if (!fullName || !phoneNumber || !email) {
-            return res.status(400).json({error: "Todos los campos son obligatorios"})
+            return res.status(400).json({error: "Todos los campos son obligatorios"});
         };
         
         // Con findIndex el encuentra el id del contacto especificado del array de contacts
         const contactIndex = contacts.findIndex(contact => contact.id === id);
 
         if (email !== contacts[contactIndex].email && contacts.some(contact => contact.email === email)) {
-            return res.status(400).json({error: "El correo ya esta en uso"})
+            return res.status(400).json({error: "El correo ya esta en uso"});
         };
         // Reemplazo de propiedades 
         contacts[contactIndex] = {...contacts[contactIndex], fullName, phoneNumber, email};
-        res.json(contacts[contactIndex])
-    };
+        res.json(contacts[contactIndex]);
+    });
 
 
 
