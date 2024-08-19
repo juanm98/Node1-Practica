@@ -100,5 +100,10 @@ app.post('/api/contacts', (req: Request, res: Response) => {
         res.status(204).send();
     });
 
+    // Filtrar contactos
+    app.get('/api/contacs/filter', (req: Request, res: Response) => {
+        const { name, email } = req.query;
+    })
+
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
