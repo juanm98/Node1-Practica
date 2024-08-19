@@ -68,6 +68,10 @@ app.post('/api/contacts', (req: Request, res: Response) => {
 
         if(isNaN(id)) {
             return res.status(400).json({error: "El id debe ser un numero"});
+        };
+
+        if (!fullName || !phoneNumber || !email) {
+            return res.status(400).json({error: "Todos los campos son obligatorios"});
         }
     }
 
