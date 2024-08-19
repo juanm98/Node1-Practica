@@ -61,6 +61,11 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     res.status(201).json(newContact);
     });
 
+    // Actualizar contacto
+    app.put('/api/contacts/:id'), (req: Request, res: Response) => {
+        const id = parseInt(req.params.id)
+    }
+
 
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
