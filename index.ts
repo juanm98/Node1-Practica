@@ -88,8 +88,17 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     // Eliminar contacto
     app.delete('/api/contacts/:id', (req: Request, res: Response) => {
         const id = parseInt(req.params.id);
+        
+        if(isNaN(id)) {
+            return res.status(400).json({error: "El id debe ser un numero"});
+        };
 
-    })
+        const contactIndex = contacts.findIndex(contact => contact.id === id);
+
+        // Uso splice para eliminar el elemento que esta en la posicion 1 del array de contacts
+        contacts.splice(contactIndex, 1);
+        res.status(204).send();
+    });
 
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
