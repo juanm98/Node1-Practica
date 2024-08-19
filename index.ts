@@ -39,4 +39,11 @@ app.get('/api/contacts/:id', (req: Request, res: Response) => {
     res.json(contact);
 });
 
+// Agregar un nuevo contacto
+app.post('/api/contacts', (req: Request, res: Response) => {
+    const { fullName, phoneNumber, email } = req.body;
+    })
+
+
+
 app.listen(port, () => console.log(`This server is running at port ${port}`));
