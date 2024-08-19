@@ -58,7 +58,7 @@ app.post('/api/contacts', (req: Request, res: Response) => {
         email
     };
     contacts.push(newContact);
-    res.json(newContact);
+    res.status(201).json(newContact);
     });
 
 
