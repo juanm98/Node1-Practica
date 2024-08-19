@@ -51,8 +51,15 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     if(contacts.some(contact => contact.email === email)) {
         return res.status(400).json({error: "El email ya existe"});
     };
-    
-    })
+    const newContact: Contact ={
+        id: contacts.length + 1,
+        fullName,
+        phoneNumber,
+        email
+    };
+    contacts.push(newContact);
+    res.json(newContact);
+    });
 
 
 
