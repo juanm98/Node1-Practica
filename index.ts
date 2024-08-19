@@ -72,7 +72,10 @@ app.post('/api/contacts', (req: Request, res: Response) => {
 
         if (!fullName || !phoneNumber || !email) {
             return res.status(400).json({error: "Todos los campos son obligatorios"});
-        }
+        };
+        
+        // Con findIndex el encuentra el id del contacto especificado del array de contacts
+        const contactIndex = contacts.findIndex(contact => contact.id === id)
     }
 
 
