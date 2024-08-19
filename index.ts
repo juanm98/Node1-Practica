@@ -42,6 +42,10 @@ app.get('/api/contacts/:id', (req: Request, res: Response) => {
 // Agregar un nuevo contacto
 app.post('/api/contacts', (req: Request, res: Response) => {
     const { fullName, phoneNumber, email } = req.body;
+
+    if(!fullName || !phoneNumber || !email) {
+        return res.status(400).json({error: "Todos los campos son obligatorios"});
+    };
     })
 
 
