@@ -46,6 +46,12 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     if(!fullName || !phoneNumber || !email) {
         return res.status(400).json({error: "Todos los campos son obligatorios"});
     };
+
+    // El medoto some devuelve truthy si encuenta algo parecido en el array, en este caso el de los emails
+    if(contacts.some(contact => contact.email === email)) {
+        return res.status(400).json({error: "El email ya existe"});
+    };
+    
     })
 
 
