@@ -64,6 +64,11 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     // Actualizar contacto
     app.put('/api/contacts/:id'), (req: Request, res: Response) => {
         const id = parseInt(req.params.id)
+        const { fullName, phoneNumber, email } = req.body;
+
+        if(isNaN(id)) {
+            return res.status(400).json({error: "El id debe ser un numero"});
+        }
     }
 
 
