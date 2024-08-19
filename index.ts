@@ -85,6 +85,11 @@ app.post('/api/contacts', (req: Request, res: Response) => {
         res.json(contacts[contactIndex]);
     });
 
+    // Eliminar contacto
+    app.delete('/api/contacts/:id', (req: Request, res: Response) => {
+        const id = parseInt(req.params.id);
+
+    })
 
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
