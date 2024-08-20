@@ -22,6 +22,26 @@ app.get(`/api/contacts`, (req: Request, res: Response) => {
     res.json(contacts);
 });
 
+// Filtrar contactos
+app.get('/api/contacts/filter', (req: Request, res: Response) => {
+    const { name,email } = req.query;
+
+    let filteredContacts = contacts 
+
+    if (name) {
+        filteredContacts = filteredContacts.filter(contact => 
+            contact.fullName.toLowerCase().includes((name as string).toLowerCase())
+        );
+    }
+
+    if (email) {
+        filteredContacts = filteredContacts.filter(contact => 
+            contact.email.toLowerCase().includes((email as string).toLowerCase())
+        );
+    }
+    res.json(filteredContacts);
+});
+
 // Obtener contacto especifico
 app.get('/api/contacts/:id', (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
@@ -99,13 +119,5 @@ app.post('/api/contacts', (req: Request, res: Response) => {
         contacts.splice(contactIndex, 1);
         res.status(204).send();
     });
-
-    // Filtrar contactos
-    app.get('/api/contacs/filter', (req: Request, res: Response) => {
-        const { name, email } = req.query;
-
-        let filterContacts = contacts 
-    })
-
 
 app.listen(port, () => console.log(`This server is running at port ${port}`));
