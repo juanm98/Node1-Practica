@@ -26,14 +26,14 @@ app.get(`/api/contacts`, (req: Request, res: Response) => {
 app.get('/api/contacts/:id', (req: Request, res: Response) => {
     const id = parseInt(req.params.id);
 
-    if(isNaN(id)) {
+    if (isNaN(id)) {
         return res.status(400).json({error: "El id debe ser un numero"});
     };
 
     // Aqui se usa el arrow function con el metodo find para buscar en el array y comparar que el id que se recibe es igual a del parametro
     const contact = contacts.find((contact) => contact.id === id);
 
-    if(!contact) {
+    if (!contact) {
         return res.status(404).json({error: "No se encontro el contacto"});
     };
     res.json(contact);
@@ -43,12 +43,12 @@ app.get('/api/contacts/:id', (req: Request, res: Response) => {
 app.post('/api/contacts', (req: Request, res: Response) => {
     const { fullName, phoneNumber, email } = req.body;
 
-    if(!fullName || !phoneNumber || !email) {
+    if (!fullName || !phoneNumber || !email) {
         return res.status(400).json({error: "Todos los campos son obligatorios"});
     };
 
     // El medoto some devuelve truthy si encuenta algo parecido en el array, en este caso el de los emails
-    if(contacts.some(contact => contact.email === email)) {
+    if (contacts.some(contact => contact.email === email)) {
         return res.status(400).json({error: "El email ya existe"});
     };
     const newContact: Contact ={
@@ -66,7 +66,7 @@ app.post('/api/contacts', (req: Request, res: Response) => {
         const id = parseInt(req.params.id);
         const { fullName, phoneNumber, email } = req.body;
 
-        if(isNaN(id)) {
+        if (isNaN(id)) {
             return res.status(400).json({error: "El id debe ser un numero"});
         };
 
@@ -89,7 +89,7 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     app.delete('/api/contacts/:id', (req: Request, res: Response) => {
         const id = parseInt(req.params.id);
         
-        if(isNaN(id)) {
+        if (isNaN(id)) {
             return res.status(400).json({error: "El id debe ser un numero"});
         };
 
@@ -103,6 +103,8 @@ app.post('/api/contacts', (req: Request, res: Response) => {
     // Filtrar contactos
     app.get('/api/contacs/filter', (req: Request, res: Response) => {
         const { name, email } = req.query;
+
+        let filterContacts = contacts 
     })
 
 
